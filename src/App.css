@@ -1,38 +1,136 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header{
   display: flex;
-  flex-direction: column;
+  height: 150px;
   align-items: center;
+  justify-content: space-around;
+}
+.header_name{
+  margin-left: 470px;
+  margin-right: 266px;
+  font-size: 45px;
+}
+.header_my_page{
+  font-weight: bold;
+  font-size: 20px;
+}
+.header_Login{
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 40px;
+}
+.body{
+  height: 550px;
+  border-bottom: 2px solid black;
+}
+.body_menual{
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+.body_menual_mypage{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20px;
+}
+.body_menual_write{
+  font-weight: bold;
+  font-size: 18px;
+}
+.body_menual_write_list{
+  font-weight: bold;
+  font-size: 18px;
+}
+.body_news{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 80px;
+  align-items: center;
+  border-bottom: 2px solid black;
 }
-
-.App-link {
-  color: #61dafb;
+.body_news_title{
+  font-weight: bold;
+  font-size: 25px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer{
+  height: 770px;
+  margin-left: 150px;
+  margin-right: 150px;
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+}
+.footer_top5_list{
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid gray;
+}
+.footer_top5_list_name{
+  font-weight: bold;
+  font-size: 23px;
+  color: rgb(31, 141, 29);
+  margin-left: 25px;
+}
+.footer_top1{
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid gray;
+}
+.footer_top1_number{
+  font-size: 50px;
+  margin-left: 30px;
+  color: brown;
+}
+.footer_top2{
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid gray;
+}
+.footer_top2_number{
+  font-size: 50px;
+  margin-left: 30px;
+  color: brown;
+}
+.footer_top3{
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid gray;
+}
+.footer_top3_number{
+  font-size: 50px;
+  margin-left: 30px;
+  color: brown;
+}
+.footer_top4{
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid gray;
+}
+.footer_top4_number{
+  font-size: 50px;
+  margin-left: 30px;
+  color: brown;
+}
+.footer_top5{
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid gray;
+}
+.footer_top5_number{
+  font-size: 50px;
+  margin-left: 30px;
+  color: brown;
 }
