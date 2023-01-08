@@ -1,14 +1,14 @@
 .header{
-  height: 150px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  height: 120px;
 }
 .header_header{
   width: 300px;
 }
 .header_name{
-  font-size: 55px;
+  display: inline-block;
+  font-size: 40px;
+  margin-top: 30px;
+  margin-left: 40px;
 }
 .header_my_page{
   font-weight: bold;
@@ -23,8 +23,9 @@
 }
 .header_User{
   display: inline-block;
-  margin-right: 50px;
-  margin-top: 10px;
+  position: absolute;
+  right: 40px;
+  top: 47px;
 }
 .body{
   height: 800px;

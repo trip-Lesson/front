@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './write.css'
 import axios from 'axios';
 
-function Write_write(){
+function Write_write({postdata,post_name,post_email}:any){
+    const navigate = useNavigate()
     const country = ["나라선택","일본","미국","캐나다"]
     const category = ["카테고리 선택","먹거리","문화","여행"]
     const [postname,setPostname] = useState("")
     const [postcategory,setPostcategory] = useState("")
     const [postcountry,setPostcountry] = useState("")
     const [postaddress, setPostaddress] = useState("")
-    const [data,setData] = useState(1)
+    const [postcontents,setPostcontents] = useState("")
+   
 
     async function save_button(){
         await axios.post("http://localhost:3000/write",{
+            "name" : post_name,
+            "email" : post_email,
             "postname" : postname,
             "postcategory" : postcategory,
             "postcountry" : postcountry,
-            "postaddress" : postaddress
+            "postaddress" : postaddress,
+            "postcontents" : postcontents
         }).then(function(response){
             console.log(response)
             alert("저장되었습니다.")
@@ -28,17 +33,8 @@ function Write_write(){
             alert("저장에 실패하였습니다.")
         })
 
-        await axios.get(`http://localhost:3000/write/4 `,
-        )
-        .then(function(response){
-            console.log(response.data)
-        }).catch(function(error){
-            console.log(error)
-        })
-        
+        navigate("/write_list")
     }
-    console.log(postname)
-    console.log(postcategory)
     return(
         <div>
             <div className='write-header'>
@@ -61,7 +57,7 @@ function Write_write(){
                         </div>
                         <select className='write-body-option-category-select'>
                            <option onClick={()=>{setPostcategory("문화")}}>문화</option>
-                           <option >여행</option>
+                           <option><span onClick={(e:any)=>{setPostcategory("여행")}}>여행</span></option>
                         </select>
                     </div>
 
@@ -86,10 +82,10 @@ function Write_write(){
                 </div>
                 <div className='write-body-contents'>
                     <div className='write-body-contents-name'>게시글 작성</div>
-                </div>x 
+                </div>
                 <div className='write-body-contents-box'>
                     <div className='write-body-contents-box-box'>                      
-                        <input className='write-body-contents-box-input' ></input>                  
+                        <input className='write-body-contents-box-input' onChange={(event:any)=>{setPostcontents(event.target.value)}} value={postcontents} ></input>                  
                     </div>                   
                 </div>
                 <div className='write-footer'>

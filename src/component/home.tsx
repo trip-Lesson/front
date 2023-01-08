@@ -48,9 +48,9 @@ function Home({poststatus,modifystatus} : any) {
       <div className="header">
           <span className='header_header'></span>
           
-          <span className='header_name'>
+          <div className='header_name'>
             TRIPLOVER
-          </span>      
+          </div>      
           <div className='header_User'>
               <span className='header_my_page' onClick={Mypage_Button}>
                 마이페이지

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({getstatus,getname}:any){
+function Login({getstatus,get_name,get_email}:any){
   const [iddel,setIddel] = useState("")
   const [pwddel,setPwddel] = useState("")
   const usenavigate = useNavigate()
@@ -30,8 +30,10 @@ function Login({getstatus,getname}:any){
                 "Authorization" : "Bearer " + token.token
             }
             })
-            .then((res)=>
-            {getname(res.data.name)}
+            .then((res)=>{
+            {get_name(res.data.name)}
+            {get_email(res.data.email)}
+            }
             )
             .catch((error)=>
         console.log(error))

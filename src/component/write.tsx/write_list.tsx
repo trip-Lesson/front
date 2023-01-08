@@ -1,20 +1,34 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Axios } from 'axios';
+import React,{useEffect} from 'react';
+import { useNavigate, useParams, } from 'react-router-dom';
+import axios from 'axios';
 
-function Write_list(){
 
-    const write_data = []
+function Write_list({get_list_write_data, post_list_write_data}:any){
 
-    
-    
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3000/write`,
+        )
+        .then(function(response){
+            get_list_write_data(response.data)
+            console.log(response.data)
+            
+        }).catch(function(error){
+            console.log(error)
+        })
+        },[])
+
+    console.log(post_list_write_data)
+      
+        
     return(
         <div>
             <div className='write-list-header'>         
-                    <div className='write-list-header-name'>TRIPLOVER</div>
+                    <div className='write-list-header-name' onClick={()=>{navigate("/")}}>TRIPLOVER</div>
                     <div className='wrtie-list-header-menu'>
-                        <span className='write-list-header-mypage'>마이페이지</span>
-                        <span className='write-list-header-write'>글 작성</span>
+                        <span className='write-list-header-mypage' onClick={()=>{navigate("/mypage")}}>마이페이지</span>
+                        <span className='write-list-header-write ' onClick={()=>{navigate("/write")}}>글 작성</span>
                     </div>
             </div>
 
@@ -31,9 +45,18 @@ function Write_list(){
                             <span className='write-list-body-list-data-style-time'>작성시간</span>
                             <span className='write-list-body-list-data-style-like'>좋아요</span>
                         </div>
-                        <div>
-                            
-                        </div>
+                        {post_list_write_data.map((item:any)=>(
+                            <div className='write-list-body-list-data-value'>
+                                <span className="write-list-body-list-data-data-no">{item.postid}</span>
+                                <span className="write-list-body-list-data-data-name" onClick={()=>{
+                                    navigate(`/detail/${item.postid}`)}
+                                    }> {item.postname} </span>
+                                <span> {item.name} </span>
+                                <span >{item.createdAt}</span>
+                                <span className="write-list-body-list-data-data-like">{item.postname}</span>
+                            </div>
+                        ))}
+                       
                     </div>
                 </div>
             </div>
