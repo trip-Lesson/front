@@ -1,186 +1,256 @@
 .header{
-  height: 120px;
-}
-.header_header{
-  width: 300px;
-}
-.header_name{
-  display: inline-block;
-  font-size: 40px;
-  margin-top: 30px;
-  margin-left: 40px;
-}
-.header_my_page{
-  font-weight: bold;
-  font-size: 21px;
-  cursor: pointer;
-  margin-right: 30px;
-}
-.header_Login{
-  font-weight: bold;
-  font-size:21px;
-  cursor: pointer;
-}
-.header_User{
-  display: inline-block;
-  position: absolute;
-  right: 40px;
-  top: 47px;
-}
-.body{
-  height: 800px;
-  border-bottom: 2px solid black;
-}
-.body_menual{
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
-}
-.body_menual_mypage{
-  font-weight: bold;
-  font-size: 18px;
-  margin-left: 20px;
-  cursor: pointer;
-}
-.body_menual_write{
-  font-weight: bold;
-  font-size: 18px;
-  cursor: pointer;
-}
-.body_menual_write_list{
-  font-weight: bold;
-  font-size: 18px;
-  cursor: pointer;
-}
-.body_news{
-  display: flex;
-  justify-content: center;
-  height: 80px;
-  align-items: center;
-  border-bottom: 2px solid black;
-}
-.body_news_title{
-  font-weight: bold;
-  font-size: 25px;
-}
-.Login-header{
-  height: 250px;
-  text-align: center;
-}
-.Login-header-title{
-  display: inline-block;
-  cursor: pointer;
-  font-size: 70px;
-  margin-top: 170px;
-}
-.Login-body{
-  height: 900px;
-  text-align: center;
-  
-}
-.Login-body-pannel{
-  display: inline-block;
-  width: 750px;
-  height: 480px;
-  margin-top: 50px;
-  border: 2px solid #c6c6c6;
-  border-radius: 10px;
-}
-@media screen and (max-width:750px) {
-  .Login-body-pannel{
+    height: 120px;
+  }
+ 
+  .header-name{
     display: inline-block;
-    width: 90%;
-    height: 420px;
-    margin-top: 40px;
-    border: 2px solid #c6c6c6;
-    border-radius: 10px;
+    font-size: 40px;
+    margin-top: 30px;
+    margin-left: 40px;
+  }
+  .header-my-page{
+    font-weight: bold;
+    font-size: 21px;
+    cursor: pointer;
+    margin-right: 30px;
+  }
+  .header-Login{
+    font-weight: bold;
+    font-size:21px;
+    cursor: pointer;
+  }
+  .header-User{
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    top: 47px;
+  }
+  .body{
+    height: 800px;
+    border-bottom: 2px solid black;
+  }
+  .body-menual{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+  }
+  .body-menual-mypage{
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+  .body-menual-write{
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .body-menual-write-list{
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .body-news{
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    align-items: center;
+    border-bottom: 2px solid black;
+  }
+  .body-news-title{
+    font-weight: bold;
+    font-size: 25px;
+  }
+  .Login-header{
+    height: 250px;
+    text-align: center;
   }
   .Login-header-title{
     display: inline-block;
-    font-size: 90%;
+    cursor: pointer;
+    font-size: 70px;
     margin-top: 170px;
+  }
+  .Login-body{
+    height: 900px;
+    text-align: center;
+    
+  }
+  .Login-body-pannel{
+    display: inline-block;
+    width: 750px;
+    height: 480px;
+    margin-top: 50px;
+    border: 2px solid #c6c6c6;
+    border-radius: 10px;
+  }
+  @media screen and (max-width:750px) {
+    .Login-body-pannel{
+      display: inline-block;
+      width: 90%;
+      height: 420px;
+      margin-top: 40px;
+      border: 2px solid #c6c6c6;
+      border-radius: 10px;
+    }
+    .Login-header-title{
+      display: inline-block;
+      font-size: 90%;
+      margin-top: 170px;
+      cursor: pointer;
+    }
+  }
+  .Login-body-contents{
+    padding: 50px;
+    height: 79%;
+  }
+  .Login-body-pannel-id{
+    display: inline-block;
+    width: 80%;
+    height: 60px;
+    border: 2px solid #dadada;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: start;
+  }
+  .Login-body-pannel-pwd{
+    display: inline-block;
+    width: 80%;
+    height: 60px;
+    border: 2px solid #dadada;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: start;
+  }
+  .Login-body-pannel-id-input{
+    height: 90%;
+    width: 86%;
+    outline: 0;
+    border: none;
+    font-size: 18px;
+  }
+  .Login-body-pannel-pwd-input{
+    height: 90%;
+    width: 86%;
+    outline: 0;
+    border: none;
+    font-size: 18px;
+  }
+  .Login-body-pannel-id-png{
+    height: 30px;
+    position: relative;
+    left: 10px;
+    top: 8px;
     cursor: pointer;
   }
+  .Login-body-pannel-pwd-png{
+    height: 30px; 
+    position: relative;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+  }
+  .Login-body-pannel-button-name{
+    height: 70px;
+    width: 80%;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  .Login-body-pannel-button{
+    margin-top: 140px;
+  }
+  .Login-body-find-user{
+    margin-top: 40px;
+    margin-right: 40px;
+  }
+  .Login-body-find-user-id{
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .Login-body-find-user-pwd{
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .Login-body-find-user-membership{
+    font-size: 20px;
+    cursor: pointer;
+  }
+.body_news_contents{
+  text-align: center;
+  margin-top: 38px;
 }
-.Login-body-ppanel{
-  padding: 50px;
-  height: 79%;
-}
-.Login-body-pannel-id{
-  display: inline-block;
-  width: 80%;
-  height: 60px;
-  border: 2px solid #dadada;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  text-align: start;
-}
-.Login-body-pannel-pwd{
-  display: inline-block;
-  width: 80%;
-  height: 60px;
-  border: 2px solid #dadada;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  text-align: start;
-}
-.Login-body-pannel-id-input{
-  height: 90%;
-  width: 86%;
-  outline: 0;
-  border: none;
+
+.body-news-contents-desc{
+  height: 140px;
+  margin-top: 70px;
   font-size: 18px;
 }
-.Login-body-pannel-pwd-input{
-  height: 90%;
-  width: 86%;
-  outline: 0;
-  border: none;
-  font-size: 18px;
+.body-news-contents-time{
+  font-size: 23px;
 }
-.Login-body-pannel-id-png{
-  height: 30px;
+.mypage-header{
+  height: 250px;
+  border-bottom: 1px solid #c6c6c6;
+}
+.mypage-header-profile{
+  border-radius: 40%;
+  height: 120px;
+  margin-top: 100px;
+  margin-left: 25px;
+}
+.mypage-header-name{
+  display: inline-block;
+  font-size: 30px;
+  margin-left: 30px;
   position: relative;
-  left: 10px;
-  top: 8px;
-  cursor: pointer;
+  bottom: 20px;
 }
-.Login-body-pannel-pwd-png{
-  height: 30px; 
-  position: relative;
-  left: 10px;
-  top: 8px;
-  cursor: pointer;
+.mypage-body{
+  text-align: center;
 }
-.Login-body-pannel-button-name{
+.mypage-body-box{
+  display: inline-block;
+  width: 90%;
+}
+.mypage-body-box-menual{
   height: 70px;
-  width: 80%;
-  border: none;
-  border-radius: 10px;
   font-size: 25px;
+  text-align: start;
+  margin-top: 30px;
+}
+.mypage-body-box-menual-write{
+  display: inline-block;
+  margin-top: 20px;
   cursor: pointer;
 }
-.Login-body-pannel-button{
-  margin-top: 140px;
+.mypage-body-box-menual-like{
+  display: inline-block;
+  margin-left: 50px;
+  cursor: pointer;  
 }
-.Login-body-find-user{
-  margin-top: 40px;
-  margin-right: 40px;
+.mypage-body-box-data-box{
+  text-align: start;
+  margin-top: 70px;
+  width: 78%;
+  margin-left: 50px;
+  height: 50px;
+  border-bottom: 1px solid #c6c6c6;
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #c6c6c6;
+  align-items: center;
 }
-.Login-body-find-user-id{
-  font-size: 20px;
-  cursor: pointer;
+.mypage-body-box-data-box-num{
+ display: inline-block; 
 }
-.Login-body-find-user-pwd{
-  font-size: 20px;
-  cursor: pointer;
+.mypage-body-box-data-box-title{
+  display: inline-block;
 }
-.Login-body-find-user-membership{
-  font-size: 20px;
-  cursor: pointer;
+.mypage-body-box-data-box-date{
+  display: inline-block;
 }
-
-

@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({getstatus,get_name,get_email}:any){
+function Login({getstatus,get_name,get_email} : any){
   const [iddel,setIddel] = useState("")
   const [pwddel,setPwddel] = useState("")
   const usenavigate = useNavigate()
 
   
-  async function Login_button(event:any){
+  async function loginButton(event:any){
     const token : any = await axios.post("http://localhost:3000/auth/signin",
     {
       "email" : iddel,
@@ -22,8 +22,6 @@ function Login({getstatus,get_name,get_email}:any){
     }).catch(function(error){
         console.log(error);
     })
-
-    
 
     axios.get("http://localhost:3000/user",{
             headers : {
@@ -43,10 +41,7 @@ function Login({getstatus,get_name,get_email}:any){
     if(token.status === 201) { 
       usenavigate("/")
     }
-
-    
-   
-    
+  
   }
 
   function id_delete(){
@@ -78,9 +73,10 @@ function Login({getstatus,get_name,get_email}:any){
       <div className='Login-header'>
         <div className='Login-header-title' onClick={go_home}>TRIPLOVER</div>
       </div>
+
       <div className='Login-body'>
         <div className='Login-body-pannel'>
-          <div className='Login-body-ppanel'>
+          <div className='Login-body-contents'>
             <div className='Login-body-pannel-id'>
               <input  placeholder='아이디' className='Login-body-pannel-id-input' value={iddel} onChange={id_onchange}></input>
               <img onClick={id_delete} className='Login-body-pannel-id-png' src='delete.png'></img>
@@ -92,7 +88,7 @@ function Login({getstatus,get_name,get_email}:any){
             </div>
             
             <div className='Login-body-pannel-button'>
-              <button onClick={Login_button} className='Login-body-pannel-button-name'>로그인</button>
+              <button onClick={loginButton} className='Login-body-pannel-button-name'>로그인</button>
             </div>
             <div>
              

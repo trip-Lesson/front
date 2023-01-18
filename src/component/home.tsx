@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function Home({poststatus,modifystatus} : any) {
+function Home({poststatus,modifystatus,get_news_data,post_news_data} : any) {
   const navigate = useNavigate()
   const [login,setLogin] = useState("로그인")
+
+  useEffect(()=>{
+     axios.get(`http://localhost:3000/news`,
+    )
+    .then(function(response){
+        get_news_data(response.data.items)
+    }).catch(function(error){
+        console.log(error)
+    })
+    },[])
+
+   
   
   useEffect(()=>{
     if(poststatus === 201){
@@ -12,7 +25,7 @@ function Home({poststatus,modifystatus} : any) {
     }
   },[])
 
-  function Login_Button(){
+  function loginButton(){
     if(login === "로그인"){ 
       navigate('/login')
     }
@@ -21,7 +34,7 @@ function Home({poststatus,modifystatus} : any) {
       modifystatus(10)
     }
   }
-  function Mypage_Button(){
+  function mypageButton(){
     if(poststatus === 201){
     navigate('/mypage')
     }else{
@@ -29,10 +42,10 @@ function Home({poststatus,modifystatus} : any) {
       navigate("/login")
     }
   }
-  function go_mypage(){
+  function goMypage(){
     navigate("/mypage")
   }
-  function go_write(){
+  function goWrite(){
     if(poststatus === 201){
       navigate('/write')
     }else{
@@ -40,39 +53,40 @@ function Home({poststatus,modifystatus} : any) {
       navigate("/login")
     }
   }
-  function go_write_list(){
+  function goWriteList(){
     navigate("/write_list")
   }
   return (
     <div> 
-      <div className="header">
-          <span className='header_header'></span>
-          
-          <div className='header_name'>
+      <div className="header">       
+          <div className='header-name'>
             TRIPLOVER
           </div>      
-          <div className='header_User'>
-              <span className='header_my_page' onClick={Mypage_Button}>
+          <div className='header-User'>
+              <span className='header-my-page' onClick={mypageButton}>
                 마이페이지
               </span>
-              <span onClick={Login_Button} className='header_Login'>
+              <span onClick={loginButton} className='header-Login'>
                 {login}
               </span>
           </div>
       </div>
 
       <div className='body'>
-        <div className='body_menual'>
-          <span onClick={go_mypage} className='body_menual_mypage'>마이페이지</span>
-          <span onClick={go_write} className='body_menual_write'>글 작성하기</span>
-          <span onClick={go_write_list} className='body_menual_write_list'>게시글 리스트</span>
+        <div className='body-menual'>
+          <span onClick={goMypage} className='body-menual-mypage'>마이페이지</span>
+          <span onClick={goWrite} className='body-menual-write'>글 작성하기</span>
+          <span onClick={goWriteList} className='body-menual-write-list'>게시글 리스트</span>
         </div>
-        <div className='body_news'>
-          <span className='body_news_title'>여행 뉴스</span>
+        <div className='body-news'>
+          <span className='body-news-title'>여행 뉴스</span>
         </div>
-        <div className='body_news_contents'>
+        <div className='body-news-contents'>
+          <h1 className='body-news-contents-title'>{post_news_data && post_news_data[0]?.title}</h1>
+          <p className='body-news-contents-desc'><h2>{post_news_data && post_news_data[0]?.description}({post_news_data && post_news_data[0]?.link})</h2></p>
+          <h3 className='body-news-contents-time'>{post_news_data && post_news_data[0]?.pubDate}</h3>
+        </div>
         
-        </div>
       </div>
       
       <div className='footer'>

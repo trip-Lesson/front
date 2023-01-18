@@ -9,7 +9,7 @@ function Create_membership(){
     const [password,setPassword] = useState("")
     const [name,setName] = useState("")
 
-    function send_user(){
+    function sendUser(){
         axios.post("http://localhost:3000/auth/signUp",
         {
             "email" : email,
@@ -28,13 +28,13 @@ function Create_membership(){
 
        
     }   
-    function go_home(){
+    function goHome(){
         usenavigate('/')
     }
     return(
         <div>
            <div className='membership-header'>
-                <div onClick={go_home} className='membership-header-name'>TRIPLOVER</div>
+                <div onClick={goHome} className='membership-header-name'>TRIPLOVER</div>
            </div>
 
            <div className='membership-body'>
@@ -58,7 +58,7 @@ function Create_membership(){
                     </div>
 
                     <div className='membership-body-button'>
-                        <button onClick={send_user} className='membership-body-button-name'>가입하기</button>
+                        <button onClick={sendUser} className='membership-body-button-name'>가입하기</button>
                     </div>
                 </div>
                 
