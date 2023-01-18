@@ -21,7 +21,7 @@ function Mypage({post_mypage_name, post_mypage_email}:any){
         })
         },[])
     
-    console.log()
+    console.log(mypage_data)
    
   
     return(
@@ -41,8 +41,10 @@ function Mypage({post_mypage_name, post_mypage_email}:any){
                         <span className='mypage-body-box-data-box-num'>글번호</span>
                         <span className='mypage-body-box-data-box-title'>제목</span>
                         <span className='mypage-body-box-data-box-date'>작성일</span>
-                    </div>
-                   
+                    </div>                  
+                   {mypage_data.map((i:any)=>{
+                    
+                   })}
                 </div>
            </div>
         </div>
