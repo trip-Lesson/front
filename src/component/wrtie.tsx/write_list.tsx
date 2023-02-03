@@ -6,10 +6,10 @@ import axios from 'axios';
 function Write_list({get_list_write_data, post_list_write_data}:any){
 
     const navigate = useNavigate()
-    const [like,setLike] = useState()
+    const [like,setLike] = useState<any[]>([])
 
     useEffect(()=>{
-        axios.get(`http://localhost:3000/write`,
+        axios.get(`http://localhost:3001/write`,
         )
         .then(function(response){
             get_list_write_data(response.data)
@@ -20,9 +20,22 @@ function Write_list({get_list_write_data, post_list_write_data}:any){
         })
         },[])
 
+    useEffect(()=>{ 
+        axios.get(`http://localhost:3001/like`,
+        )
+        .then(function(response){
+            setLike(response.data)
+            console.log(response)
+        }).catch(function(error){
+            console.log(error)
+        })
+       
+        },[])
+
+    
     console.log(post_list_write_data)
-      
-        
+    const a = like.filter(a=>Number(a.write_id)===1).length
+    console.log(a)
     return(
         <div>
             <div className='write-list-header'>         
@@ -38,27 +51,34 @@ function Write_list({get_list_write_data, post_list_write_data}:any){
                     <div className='write-list-body-list-name-box'>
                         <div className='write-list-body-list-name'>여행게시판</div>
                     </div>
-                    <div className='write-list-body-list-data'>
-                        <div className='write-list-body-list-data-style'>
-                            <span className='write-list-body-list-data-style-no'>No</span>
-                            <span className='write-list-body-list-data-style-title'>제목</span>
-                            <span className='write-list-body-list-data-style-writer'>글쓴이</span>
-                            <span className='write-list-body-list-data-style-time'>작성시간</span>
-                            <span className='write-list-body-list-data-style-like'>좋아요</span>
-                        </div>
-                        {post_list_write_data.map((item:any)=>(
-                            <div className='write-list-body-list-data-value'>
-                                <span className="write-list-body-list-data-data-no">{item.postid}</span>
-                                <span className="write-list-body-list-data-data-name" onClick={()=>{
-                                    navigate(`/detail/${item.postid}`)}
-                                    }> {item.postname} </span>
-                                <span> {item.name} </span>
-                                <span >{item.createdAt}</span>
-                                <span className="write-list-body-list-data-data-like">{like}</span>
-                            </div>
-                        ))}
-                       
-                    </div>
+                    
+                    <table className='write-list-body-list-data-box'>
+                    
+                        <thead>
+                            <tr>
+                                <th className='write-list-body-list-data-box-NO'>NO</th>
+                                <th className='write-list-body-list-data-box-title'>제목</th>
+                                <th className='write-list-body-list-data-box-writer'>글쓴이</th>
+                                <th className='write-list-body-list-data-box-time'>작성시간</th>
+                                <th className='write-list-body-list-data-box-like'>좋아요</th>   
+                            </tr>
+                        </thead>  
+                        
+                        <tbody>
+                        {post_list_write_data.map((i:any, index:any)=>(
+                            <tr>
+                                <td>{i.postid}</td>
+                                <td onClick={()=>{navigate(`/detail/${i.postid}`)}}>{i.postname}</td>
+                                <td>{i.name}</td>
+                                <td>{i.updatedAt}</td>
+                                <td>{like.filter(a=>Number(a.write_id)===index+1).length}</td>
+                                
+                            </tr>
+                        ))}            
+                        </tbody>
+
+                    </table>
+                                 
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@ function Login({getstatus,get_name,get_email} : any){
 
   
   async function loginButton(event:any){
-    const token : any = await axios.post("http://localhost:3000/auth/signin",
+    const token : any = await axios.post("http://localhost:3001/auth/signin",
     {
       "email" : iddel,
       "password" : pwddel,
@@ -23,7 +23,7 @@ function Login({getstatus,get_name,get_email} : any){
         console.log(error);
     })
 
-    axios.get("http://localhost:3000/user",{
+    axios.get("http://localhost:3001/user",{
             headers : {
                 "Authorization" : "Bearer " + token.token
             }

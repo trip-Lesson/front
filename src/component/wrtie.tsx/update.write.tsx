@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import './write.css'
 import axios from 'axios';
 
-function Write_write({post_name,post_email}:any){
+function Update_write({post_PostId,post_nameForUpdate,post_emailForUpdate}:any){
     const navigate = useNavigate()
     const country = ["나라선택","일본","미국","캐나다"]
     const category = ["카테고리 선택","먹거리","문화","여행"]
@@ -14,10 +14,10 @@ function Write_write({post_name,post_email}:any){
     const [postcontents,setPostcontents] = useState("")
    
 
-    async function saveButton(){
-        await axios.post("http://localhost:3001/write",{
-            "name" : post_name,
-            "email" : post_email,
+    async function updateButton(){
+        await axios.put(`http://localhost:3001/write/${(post_PostId)}`,{
+            "name" : post_nameForUpdate,
+            "email" : post_emailForUpdate,
             "postname" : postname,
             "postcategory" : postcategory,
             "postcountry" : postcountry,
@@ -26,19 +26,17 @@ function Write_write({post_name,post_email}:any){
         }).then(function(response){
             console.log(response)
             alert("저장되었습니다.")
-          
         }
         ).catch(function(error){
             console.log(error);
             alert("저장에 실패하였습니다.")
         })
 
-        navigate("/write_list")
     }
     return(
         <div>
             <div className='write-header'>
-                <span className='write-header-name'>게시글 설정</span>
+                <span className='write-header-name'>게시글 설정 수정</span>
             </div>
 
             <div className='write-body'>
@@ -82,7 +80,7 @@ function Write_write({post_name,post_email}:any){
 
                 </div>
                 <div className='write-body-contents'>
-                    <div className='write-body-contents-name'>게시글 작성</div>
+                    <div className='write-body-contents-name'>게시글 작성 수정</div>
                 </div>
                 <div className='write-body-contents-box'>
                     <div className='write-body-contents-box-box'>                      
@@ -90,10 +88,10 @@ function Write_write({post_name,post_email}:any){
                     </div>                   
                 </div>
                 <div className='write-footer'>
-                    <button onClick={saveButton} className='write-footer-button'>저장</button>
+                    <button onClick={updateButton} className='write-footer-button'>저장</button>
                 </div>
             </div>
         </div>
     )
 }
-export default Write_write;
+export default Update_write;

@@ -8,7 +8,7 @@ function Home({poststatus,modifystatus,get_news_data,post_news_data} : any) {
   const [login,setLogin] = useState("로그인")
 
   useEffect(()=>{
-     axios.get(`http://localhost:3000/news`,
+     axios.get(`http://localhost:3001/news`,
     )
     .then(function(response){
         get_news_data(response.data.items)

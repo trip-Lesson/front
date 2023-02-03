@@ -10,7 +10,7 @@ function Create_membership(){
     const [name,setName] = useState("")
 
     function sendUser(){
-        axios.post("http://localhost:3000/auth/signUp",
+        axios.post("http://localhost:3001/auth/signUp",
         {
             "email" : email,
             "password" : password,

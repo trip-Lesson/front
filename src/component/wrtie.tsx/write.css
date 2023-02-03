@@ -207,19 +207,13 @@
     font-weight: bold;
     margin-top: 35px;
 }
-.write-list-body-list-data{
-    text-align: start;
+.write-list-body-list-data-box{
+   width: 100%;
 }
-.write-list-body-list-data-style{
-    height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 17px;
-    font-weight: bold;
-    border-bottom: 1px solid #c6c6c6;
-    
+th,td{
+   padding: 14px;
 }
+
 .write-list-body-list-data-style-no{
     margin-left: 30px; 
 }
@@ -296,7 +290,7 @@
 }
 .write-detail-body-user-infor{
     font-size: 21px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-around;
@@ -304,13 +298,154 @@
 }
 .write-detail-body-contents{
     margin-top: 10px;
-    height:600px;
+    height: 500px;
     word-wrap: break-word;
     font-size: 23px;
 }
 .write-detail-body-like{
     text-align: end;
 }
-.write-detail-body-heart{
-    height: 35px;
+.write-detail-body-like-heart{
+   font-size: 70px;
+}
+.write-detail-body-comment-box{
+    display: inline-block;
+    width: 70%;
+    text-align: start;
+    font-size: 25px;
+    margin-top: 30px;
+}
+.write-detail-body-comment-writing{
+    height: 57px;
+    margin-top: 25px;
+    text-align: end;
+}
+.write-detail-body-comment-input{
+    width: 98%;
+    height: 100%;
+    font-size: 23px;
+    color: #929292;  
+    border-radius: 4px;
+    border-color:#dadada;
+    box-sizing: border-box;
+}
+.write-detail-body-comment-button{
+    height: 40px;
+    margin-top: 20px;
+    text-align: end;
+}
+.write-detail-body-comment-button-register{
+    height: 100%;
+    width: 50px;
+}
+.write-detail-body-comment-user-comment-list-box{
+    margin-top: 40px;
+    border-bottom: 1px solid #dadada;
+}
+.write-detail-body-comment-user-comment-list{
+    display: inline-block;
+    width: 87%;
+    margin-left: 40px;
+}
+.write-detail-body-comment-user-comment-list-profile-img{
+    height: 55px;
+    border-radius: 100%;
+}
+.write-detail-body-comment-user-comment-list-profile-date{
+    display: inline-block;
+    font-size: 18px;
+    color: #929292;
+    margin-left: 10px;
+    position: relative;
+    bottom: 7px;
+}
+.write-detail-body-comment-user-comment-list-profile-box{
+   position: relative;
+}
+
+.write-detail-body-comment-user-comment-list-profile-name{
+    font-size: 19px;
+    font-weight: 500;
+    position: absolute;
+    top: 0px;
+    left: 65px;
+}
+.write-detail-body-comment-user-comment-list-contents-box{
+    margin-top: 10px;
+}
+.write-detail-body-comment-user-comment-list-contents{
+    margin-left: 5px;
+}
+.write-detail-body-comment-user-comment-list-reply{
+    font-size: 20px;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    align-items: center;
+    cursor: pointer;
+
+}
+.write-detail-body-comment-reply-comment-list-box-div{
+    border-bottom: 1px solid #dadada;
+}
+.write-detail-body-comment-reply-comment-list-box{
+    list-style: none;
+    margin-top: 40px;
+    margin-bottom: 1px solid #dadada;
+    padding-left: 80px;
+}
+
+.write-detail-body-comment-reply-comment-list{
+    height: 170px;
+    border-bottom: 1px solid #dadada;
+}
+.write-detail-body-comment-reply-comment-list-profile{
+    margin-top: 30px;
+}
+.write-detail-body-comment-reply-comment-list-profile-img{
+    height: 55px;
+    border-radius: 100%;
+}
+.write-detail-body-comment-reply-comment-list-profile-date{
+    display: inline-block;
+    font-size: 18px;
+    color: #929292;
+    margin-left: 10px;
+    position: relative;
+    bottom: 7px;
+}
+.write-detail-body-comment-reply-comment-list-profile-box{
+   position: relative;
+}
+.write-detail-body-comment-reply-comment-list-profile-name{
+    font-size: 19px;
+    font-weight: 500;
+    position: absolute;
+    top: 0px;
+    left: 65px;
+}
+.write-detail-body-comment-reply-comment-list-contents-box{
+    margin-top: 25px;
+}
+.write-detail-body-comment-reply-comment-list-contents{
+    margin-left: 5px;
+}
+.write-detail-body-comment-reply-comment-input-box-div{
+    height: 140px;
+    display: flex;
+    align-items: center;
+}
+.write-detail-body-comment-reply-comment-input-box{
+    height: 57px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.write-detail-body-comment-reply-comment-input{
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   font-size: 23px;
+   color: #929292;  
+   border-radius: 4px;
+   border-color:#dadada;
 }
