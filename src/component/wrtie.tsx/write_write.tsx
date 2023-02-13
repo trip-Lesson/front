@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import './write.css'
 import axios from 'axios';
 
-function Write_write({post_name,post_email}:any){
+function Write_write({post_name,post_email,post_write_userId}:any){
     const navigate = useNavigate()
     const country = ["나라선택","일본","미국","캐나다"]
     const category = ["카테고리 선택","먹거리","문화","여행"]
@@ -15,7 +15,7 @@ function Write_write({post_name,post_email}:any){
    
 
     async function saveButton(){
-        await axios.post("http://localhost:3001/write",{
+        await axios.post(`http://localhost:3001/write/${post_write_userId}/write`,{
             "name" : post_name,
             "email" : post_email,
             "postname" : postname,
@@ -25,8 +25,7 @@ function Write_write({post_name,post_email}:any){
             "postcontents" : postcontents
         }).then(function(response){
             console.log(response)
-            alert("저장되었습니다.")
-          
+            alert("저장되었습니다.")     
         }
         ).catch(function(error){
             console.log(error);

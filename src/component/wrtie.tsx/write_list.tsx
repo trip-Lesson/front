@@ -3,39 +3,35 @@ import { useNavigate, useParams, } from 'react-router-dom';
 import axios from 'axios';
 
 
-function Write_list({get_list_write_data, post_list_write_data}:any){
+function Write_list(){
 
     const navigate = useNavigate()
-    const [like,setLike] = useState<any[]>([])
+    const [writedata,setWritedata] = useState<any[]>([])
 
     useEffect(()=>{
         axios.get(`http://localhost:3001/write`,
         )
         .then(function(response){
-            get_list_write_data(response.data)
-            console.log("asd")
+            setWritedata(response.data)
+            console.log("asd")  
             
         }).catch(function(error){
             console.log(error)
         })
-        },[])
-
-    useEffect(()=>{ 
-        axios.get(`http://localhost:3001/like`,
+    },[])
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/write/getAll/like/${writedata}`,
         )
         .then(function(response){
-            setLike(response.data)
-            console.log(response)
+            setWritedata(response.data)
+            console.log("asd")  
+            
         }).catch(function(error){
             console.log(error)
         })
-       
-        },[])
-
+    },[])
     
-    console.log(post_list_write_data)
-    const a = like.filter(a=>Number(a.write_id)===1).length
-    console.log(a)
+    console.log(writedata)
     return(
         <div>
             <div className='write-list-header'>         
@@ -65,14 +61,15 @@ function Write_list({get_list_write_data, post_list_write_data}:any){
                         </thead>  
                         
                         <tbody>
-                        {post_list_write_data.map((i:any, index:any)=>(
+                        {writedata.map((i:any, index:any)=>(
                             <tr>
                                 <td>{i.postid}</td>
-                                <td onClick={()=>{navigate(`/detail/${i.postid}`)}}>{i.postname}</td>
-                                <td>{i.name}</td>
+                                <td onClick={()=>{
+                                    navigate(`/detail/${i.postid}`)
+                                }}>{i.postname}</td>
+                                <td>{i.user.name}</td>
                                 <td>{i.updatedAt}</td>
-                                <td>{like.filter(a=>Number(a.write_id)===index+1).length}</td>
-                                
+                                <td></td>
                             </tr>
                         ))}            
                         </tbody>

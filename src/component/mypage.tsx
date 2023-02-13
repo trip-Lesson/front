@@ -2,23 +2,16 @@ import axios from 'axios';
 import React, {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Mypage({post_mypage_name, post_mypage_email,getPostId}:any){
-
+function Mypage({post_mypage_name, post_mypage_email, getPostId, post_User_id}:any){
     const navigate = useNavigate()
     const update_profile_ref = useRef<any>()
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
 
-    interface information  {
-       postid : string
-       postname : string;
-       updatedAt : string;
-    }
-
-    const [mypage_data,setMypage_data] = useState<information[]>([])
+    const [mypage_data,setMypage_data] = useState<any[]>([])
     
     useEffect(()=>{
-        axios.get(`http://localhost:3001/write/mail/${post_mypage_email}`,
+        axios.get(`http://localhost:3001/user/getAll/UserWrite/${post_mypage_email}`,
         )
         .then(function(response){
             setMypage_data(response.data)
@@ -26,10 +19,10 @@ function Mypage({post_mypage_name, post_mypage_email,getPostId}:any){
         }).catch(function(error){
             console.log(error)
         })
-        },[])
+        },[]) //o
 
     function updateUser(){
-        axios.put(`http://localhost:3001/auth/${post_mypage_email}`,
+        axios.put(`http://localhost:3001/auth/${post_User_id}`,
         {
             "email" : email,
             "name" : name
@@ -41,8 +34,7 @@ function Mypage({post_mypage_name, post_mypage_email,getPostId}:any){
             console.log(error)
         })
     }
-
-    console.log(mypage_data)
+    console.log(mypage_data[0]?.write)
     return(
         <div>
            <div className='mypage-header'>
@@ -75,7 +67,7 @@ function Mypage({post_mypage_name, post_mypage_email,getPostId}:any){
                             </tr>
                         </thead>
                         <tbody>
-                            {mypage_data.map((i:any,index:any)=>{
+                            {mypage_data[0]?.write.map((i:any,index:any)=>{
                                 return <tr>
                                     <td>{index+1}</td>
                                     <td>{i.postname}</td>
@@ -84,7 +76,7 @@ function Mypage({post_mypage_name, post_mypage_email,getPostId}:any){
                                         {getPostId(i.postid)}
                                         navigate('/update_write')
                                     }}>수정</button><button className='mypage-body-box-data-delete' onClick={async()=>{
-                                        await axios.delete(`http://localhost:3001/write`,{
+                                        await axios.delete(`http://localhost:3001/user/delete/write/${post_mypage_email}/${index}`,{
                                             data : {
                                                     "postid" : i.postid,
                                                     "email" : i.email

@@ -19,25 +19,26 @@ import Mypage_Revise from "./component/mypage.revise";
 import Update_write from "./component/wrtie.tsx/update.write";
 const Router = () => {
     const [status,setStatus] = useState() 
-    const [list_write_data,setList_write_data] = useState([])
     const [name,setName] = useState()
     const [mail,setMail] = useState()
     const [home_news_data,setHome_news_data] = useState()
     const [updateWithPostId,setUpdateWithPostId] = useState("")
+    const [user_id,setUser_id] = useState()
   
-    console.log(updateWithPostId)
+  
+  
     return (
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home get_news_data={setHome_news_data} post_news_data={home_news_data} poststatus={status} modifystatus={setStatus}/>}/>
-                    <Route path="/login" element={<Login getstatus={setStatus} get_email = {setMail} get_name={setName}/>}/>
+                    <Route path="/login" element={<Login get_User_id={setUser_id} getstatus={setStatus} get_email = {setMail} get_name={setName}/>}/>
                     <Route path="find_pwd" element={<Find_PWD/>}/>
                     <Route path="find_id" element={<Find_ID/>}/>
                     <Route path="create_membership" element={<Create_membership/>}/>
-                    <Route path="/mypage" element={<Mypage getPostId={setUpdateWithPostId} post_mypage_email = {mail} post_mypage_name = {name} />}/>
-                    <Route path="/write"  element={<Write_write post_email = {mail}  post_name={name} />}/>
-                    <Route path="/write_list" element={<Write_list get_list_write_data={setList_write_data} post_list_write_data={list_write_data}/>}/>
-                    <Route path='/detail/:id' element={<Detail post_detail_email={mail} post_status_to_detail={status}/>}/>
+                    <Route path="/mypage" element={<Mypage post_User_id={user_id} getPostId={setUpdateWithPostId} post_mypage_email = {mail} post_mypage_name = {name} />}/>
+                    <Route path="/write"  element={<Write_write  post_write_userId={user_id} post_email = {mail}  post_name={name} />}/>
+                    <Route path="/write_list" element={<Write_list/>}/>
+                    <Route path='/detail/:id' element={<Detail post_detail_userId={user_id} post_detail_email={mail} post_status_to_detail={status}/>}/>
                     <Route path="/mypage_like" element={<Mypage_Like  post_mypage_like_email = {mail} post_mypage_like_name={name}/>}/>
                     <Route path="/mypage_revise" element={<Mypage_Revise/>}></Route>
                     <Route path="/update_write" element={<Update_write post_emailForUpdate={mail} post_nameForUpdate={name} post_PostId={updateWithPostId}/>}></Route>

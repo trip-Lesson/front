@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Login({getstatus,get_name,get_email} : any){
+function Login({getstatus,get_name,get_email,get_User_id} : any){
   const [iddel,setIddel] = useState("")
   const [pwddel,setPwddel] = useState("")
   const usenavigate = useNavigate()
@@ -23,19 +23,20 @@ function Login({getstatus,get_name,get_email} : any){
         console.log(error);
     })
 
-    axios.get("http://localhost:3001/user",{
-            headers : {
-                "Authorization" : "Bearer " + token.token
-            }
-            })
-            .then((res)=>{
-            {get_name(res.data.name)}
-            {get_email(res.data.email)}
-            }
-            )
-            .catch((error)=>
-        console.log(error))
-
+    await axios.get("http://localhost:3001/user",{
+      headers : {
+          "Authorization" : "Bearer " + token.token
+      }
+    })
+    .then((res)=>{
+      {get_User_id(res.data.id)}
+      {get_name(res.data.name)}
+      {get_email(res.data.email)}
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  
     {getstatus(token.status)}
        
     if(token.status === 201) { 
