@@ -2,12 +2,13 @@ import React, {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { async } from 'q';
+
+const likeWrite = (userid:number,postid:number) =>  axios.get(`http://localhost:3001/write/findUserLike/${postid}/${userid}`)
+const write = (postid : number) => axios.get(`http://localhost:3001/write/getWrite/${postid}`)
+const commentReply = (postid : number) => axios.get(`http://localhost:3001/write/getAll/CommentReply/${postid}`)
 
 function Detail ({post_status_to_detail,post_detail_userId}:any){
-    interface commenttype{
-        comment_contents : string;
-    }
+    
     const inputId = useRef<any>([]);
     const test = useRef<any>([]);
     const getCommentId = useRef<any>([]);
@@ -16,44 +17,17 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
     const [writedata,setWritedata] = useState<any>([])
     const [reply,setReply] = useState("")
     const [comment,setComment] = useState("")
-    const [reply_data,setReply_data] = useState<any>([])
-    const [commentdata,setCommentdata] = useState<commenttype[]>([])
+    const [commentdata,setCommentdata] = useState<any[]>([])
     const navigate = useNavigate()
     const id  = useParams()
-
-    const data = writedata[Number(id.id)-1]
-
+    
     useEffect(()=>{
-        axios.get(`http://localhost:3001/write/getWrite/${Number(id.id)}`)
-        .then(function(response){
-            console.log(response.data)
-            setWritedata(response.data)
-        }).catch(function(error){
-            console.log(error)
-        })
+        likeWrite(post_detail_userId,Number(id.id)).then((res)=>{if(res.data==true){setLike('♥')}})
+        write(Number(id.id)).then(res=>setWritedata(res.data))
+        commentReply(Number(id.id)).then(res=>setCommentdata(res.data))
     },[])
 
-    useEffect(()=>{
-        axios.get(`http://localhost:3001/comment/getAll/CommentUserReply`)
-        .then(function(response){
-            console.log(response.data)
-            setReply_data(response.data)
-        }).catch(function(error){
-            console.log(error)
-        })
-    },[])
 
-    useEffect(()=>{
-        axios.get(`http://localhost:3001/write/getAll/CommentUserWrite/${Number(id.id)}`)
-        .then(function(response){
-            console.log(response.data.comment)
-            setCommentdata(response.data.comment)
-        }).catch(function(error){
-            console.log(error)
-        })
-    },[])
-    console.log(reply_data)
-    console.log(reply)
     return(
         <div>
            <div className='write-detail-header'>         
@@ -130,7 +104,7 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                         }}>등록</button>
                     </div>
                     
-                    {commentdata.map((i:any, index:number)=>(   
+                    {commentdata[0]?.comment.map((i:any, index:number)=>(   
                         <div>
 
                             <div className='write-detail-body-comment-user-comment-list-box'>  
@@ -138,12 +112,12 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                                     <div className='write-detail-body-comment-user-comment-list-profile-box'>
                                         <div className='write-detail-body-comment-user-comment-list-profile'>
                                             <img className='write-detail-body-comment-user-comment-list-profile-img' src='https://d1unjqcospf8gs.cloudfront.net/assets/users/default_profile_80-c649f052a34ebc4eee35048815d8e4f73061bf74552558bb70e07133f25524f9.png'></img>
-                                            <div className='write-detail-body-comment-user-comment-list-profile-date'>{i.createdAt}</div>
+                                            <div className='write-detail-body-comment-user-comment-list-profile-date'>{i?.createdAt}</div>
                                         </div>
-                                        <span className='write-detail-body-comment-user-comment-list-profile-name'>{i.user.email}</span>
+                                        <span className='write-detail-body-comment-user-comment-list-profile-name'>{i?.user?.name}</span>
                                     </div>
                                     <div className='write-detail-body-comment-user-comment-list-contents-box'>
-                                        <span className='write-detail-body-comment-user-comment-list-contents'>{i.comment_contents}</span>
+                                        <span className='write-detail-body-comment-user-comment-list-contents'>{i?.comment_contents}</span>
                                     </div>
                                     <div className='write-detail-body-comment-user-comment-list-reply' id={i.comment_id} ref={(element)=>{getCommentId.current[index] = element}} onClick={()=>{                
                                         if(test.current[index].style.display == "none"){
@@ -160,14 +134,14 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                            
                             <div className='write-detail-body-comment-reply-comment-list-box-div' id={String(index)}  style={{display:'none'}} ref={(element)=>{test.current[index] = element}}>       
                                 <ul className='write-detail-body-comment-reply-comment-list-box'>
-                                    {reply_data[index]?.comment_reply?.map((i:any)=>(
+                                    {i.reply.map((i:any)=>(
                                          <li className='write-detail-body-comment-reply-comment-list'>
                                          <div className='write-detail-body-comment-reply-comment-list-profile-box'>
                                              <div className='write-detail-body-comment-reply-comment-list-profile'>
                                                  <img className='write-detail-body-comment-reply-comment-list-profile-img' src='https://d1unjqcospf8gs.cloudfront.net/assets/users/default_profile_80-c649f052a34ebc4eee35048815d8e4f73061bf74552558bb70e07133f25524f9.png'></img>
                                                  <div className='write-detail-body-comment-reply-comment-list-profile-date'>{i.createdAt}</div>
                                              </div>
-                                             <span className='write-detail-body-comment-reply-comment-list-profile-name'>{i.user.email}</span>
+                                             <span className='write-detail-body-comment-reply-comment-list-profile-name'>{i.user.name}</span>
                                          </div>
                                          <div className='write-detail-body-comment-reply-comment-list-contents-box'>
                                              <span className='write-detail-body-comment-reply-comment-list-contents'>{i.reply_contents}</span>

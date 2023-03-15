@@ -4,59 +4,18 @@ import { string } from 'yargs';
 import { useNavigate } from 'react-router-dom';
 
 
+const userLike = (email:string) => axios.get(`http://localhost:3001/user/getAll/UserLike/${email}`)
+
 function Mypage_Like({post_mypage_like_name, post_mypage_like_email}:any){
 
     const navigate = useNavigate()
-    
-    interface likedata {
-        likeid : number;
-        user_email : string;
-        write_id : string;
-    }
-    
-    interface listdata{
-        postid : number;
-        name : string;
-        email : string;
-        postname : string;
-        postcategory : string;
-        postcountry : string;
-        postaddress : string;
-        postcontents : string;
-    }
-
-    const [like_data,setLike_data] = useState<likedata[]>([])
-    const [list_data,setList_data] = useState<listdata[]>([])
+    const [list_data,setList_data] = useState<any[]>([])
 
     useEffect(()=>{
-        axios.get(`http://localhost:3001/like/findall/${post_mypage_like_email}`
-        ).then(function(response){
-            setLike_data(response.data)
-            console.log(response.data)
-        }).catch(function(error){
-            console.log(error)
-        })
-    },[])
+       userLike(post_mypage_like_email).then(function(response){setList_data(response.data)})
+    },[]) 
 
-    useEffect(()=>{
-        axios.get(`http://localhost:3001/write`,
-        )
-        .then(function(response){
-            setList_data(response.data)
-            console.log(response.data)
-        }).catch(function(error){
-            console.log(error)
-        })
-    },[])
 
-    
-    console.log(list_data)
-    
-    const a = like_data.map((i:any, index:any)=>{
-       return list_data.filter(a=>Number(a.postid) === Number(i.write_id))
-    })
-   
-    console.log(a)
       return(
         <div>
            <div className='mypage-header'>
@@ -79,11 +38,11 @@ function Mypage_Like({post_mypage_like_name, post_mypage_like_email}:any){
                             </tr>
                         </thead>
                         <tbody>
-                            {a.map((i:any,index:any)=>{
+                            {list_data[0]?.like_write.map((i:any,index:any)=>{
                                 return <tr>
                                     <td>{index+1}</td>
-                                    <td>{i[0]?.postname}</td>
-                                    <td>{i[0]?.updatedAt}</td>
+                                    <td>{i?.write?.postname}</td>
+                                    <td>{i?.write?.updatedAt}</td>
                                 </tr>
                             })}
                         </tbody>

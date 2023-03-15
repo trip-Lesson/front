@@ -7,6 +7,7 @@ function Write_list(){
 
     const navigate = useNavigate()
     const [writedata,setWritedata] = useState<any[]>([])
+    const [likedata,setLikedata] = useState<any[]>([])
 
     useEffect(()=>{
         axios.get(`http://localhost:3001/write`,
@@ -19,11 +20,12 @@ function Write_list(){
             console.log(error)
         })
     },[])
+    
     useEffect(()=>{
-        axios.get(`http://localhost:3001/write/getAll/like/${writedata}`,
+        axios.get(`http://localhost:3001/write/getAll/like`,
         )
         .then(function(response){
-            setWritedata(response.data)
+            setLikedata(response.data)
             console.log("asd")  
             
         }).catch(function(error){
@@ -32,6 +34,7 @@ function Write_list(){
     },[])
     
     console.log(writedata)
+    console.log(likedata)
     return(
         <div>
             <div className='write-list-header'>         
@@ -61,15 +64,15 @@ function Write_list(){
                         </thead>  
                         
                         <tbody>
-                        {writedata.map((i:any, index:any)=>(
+                        {likedata.map((i:any, index:any)=>(
                             <tr>
-                                <td>{i.postid}</td>
+                                <td>{index+1}</td>
                                 <td onClick={()=>{
                                     navigate(`/detail/${i.postid}`)
                                 }}>{i.postname}</td>
                                 <td>{i.user.name}</td>
                                 <td>{i.updatedAt}</td>
-                                <td></td>
+                                <td>{i.like_write.length}</td>
                             </tr>
                         ))}            
                         </tbody>
