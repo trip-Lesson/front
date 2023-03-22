@@ -1,0 +1,107 @@
+.membership-header{
+    font-size: 65px;
+    height: 200px;
+    text-align: center;
+}
+.membership-header-name{
+    display: inline-block;
+    margin-top: 100px;
+    cursor: pointer;
+}
+.membership-body{
+    height: 700px;
+    text-align: center;
+}
+.membership-body-user{
+    display: inline-block;
+    width: 900px;
+    height: 100%;
+    box-sizing: border-box;
+
+}
+.membership-body-user-email{
+    display: inline-block;
+    width: 75%;
+    text-align: start;
+}
+.membership-body-user-email-name{
+    font-size: 25px;
+}
+.membership-body-user-email-input{
+    margin-top: 20px;
+    height: 55px; 
+    border: 2px solid #dadada;
+    display: block;
+    width: 100%;
+    box-sizing: border-box; 
+    font-size: 25px;
+}
+.membership-body-user-pwd{
+    display: inline-block;
+    width: 75%;
+    text-align: start;
+}
+.membership-body-user-pwd-name{
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 25px;
+}
+.membership-body-user-pwd-input{
+    margin-top: 20px;
+    height: 55px; 
+    border: 2px solid #dadada;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 25px;
+}
+.membership-body-user-pwd-confirm{
+    display: inline-block;
+    width: 75%;
+    text-align: start;
+}
+.membership-body-user-pwd-confirm-name{
+    display: inline-block;
+    font-size: 25px;
+    margin-top: 30px;
+}
+.membership-body-user-pwd-confirm-input{
+    margin-top: 20px;
+    height: 55px; 
+    border: 2px solid #dadada;
+    display: block;
+    width: 100%;
+    box-sizing: border-box; 
+    font-size: 25px;
+}
+.membership-body-user-name{
+    display: inline-block;
+    width: 75%;
+    text-align: start;
+}
+.membership-body-user-name-name{
+    display: inline-block;
+    font-size: 25px;
+    margin-top: 30px;
+}
+.membership-body-user-name-input{
+    margin-top: 20px;
+    height: 55px; 
+    border: 2px solid #dadada;
+    display: block;
+    width: 100%;
+    box-sizing: border-box; 
+    font-size: 25px;
+}
+.membership-body-button{
+    height: 80px;
+    margin-top: 100px;
+    
+}
+.membership-body-button-name{
+    height: 100%;
+    width: 75%;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+}
