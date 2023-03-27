@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import { string } from 'yargs';
 import { useNavigate } from 'react-router-dom';
 
+const img = <img className='mypage-header-profile' src="https://d1unjqcospf8gs.cloudfront.net/assets/users/default_profile_80-c649f052a34ebc4eee35048815d8e4f73061bf74552558bb70e07133f25524f9.png"></img>
+
 
 const userLike = (email:string) => axios.get(`http://localhost:3001/user/getAll/UserLike/${email}`)
 
@@ -19,7 +21,7 @@ function Mypage_Like({post_mypage_like_name, post_mypage_like_email}:any){
       return(
         <div>
            <div className='mypage-header'>
-                <img className='mypage-header-profile' src="https://d1unjqcospf8gs.cloudfront.net/assets/users/default_profile_80-c649f052a34ebc4eee35048815d8e4f73061bf74552558bb70e07133f25524f9.png"></img>
+                {img}
                 <div className='mypage-header-name'>{post_mypage_like_name}({post_mypage_like_email})</div>
            </div>
 
