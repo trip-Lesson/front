@@ -7,7 +7,7 @@ import axios from 'axios';
 function Home({poststatus,modifystatus,get_news_data,post_news_data} : any) {
 
   const navigate = useNavigate()
-  const [login,setLogin] = useState("로그인하기")
+  const [login,setLogin] = useState<string>("로그인하기")
   
  return(
     <div >
@@ -49,9 +49,10 @@ function Home({poststatus,modifystatus,get_news_data,post_news_data} : any) {
               {login}
             </button>
           </div>
-        </div>
-        
+        </div>  
       </div>
+     
+      
     </div>
  )
 }

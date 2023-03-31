@@ -85,7 +85,7 @@ function Login({getstatus,get_name,get_email,get_User_id} : any){
             <div className='Login-body-pannel-pwd'>
               <input placeholder='비밀번호' className='Login-body-pannel-pwd-input' value={pwdDelete} onChange={pwd_onchange}></input>
               <img onClick={pwd_delete} className='Login-body-pannel-pwd-png' src='delete.png'></img>
-
+              
             </div>
             
             <div className='Login-body-pannel-button'>

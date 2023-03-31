@@ -397,7 +397,7 @@ th,td{
     align-items: flex-end;
     align-items: center;
     cursor: pointer;
-
+    position: relative;
 }
 .write-detail-body-comment-reply-comment-list-box-div{
     border-bottom: 1px solid #dadada;
