@@ -28,13 +28,11 @@ function Mypage({post_mypage_name, post_mypage_email, getPostId, post_User_id}:a
             "name" : name
         }
         )
-        .then(function(response){
-            console.log(response)
-        }).catch(function(error){
+        .catch(function(error){
             console.log(error)
         })
     }
-    console.log(mypage_data[0]?.write)
+   
     return(
         <div>
            <div className='mypage-header'>
@@ -73,7 +71,7 @@ function Mypage({post_mypage_name, post_mypage_email, getPostId, post_User_id}:a
                                     <td>{i.postname}</td>
                                     <td>{i.updatedAt}</td>
                                     <td><button className='mypage-body-box-data-revise' onClick={()=>{
-                                        {getPostId(i.postid)}
+                                        getPostId(i.postid)
                                         navigate('/update_write')
                                     }}>수정</button><button className='mypage-body-box-data-delete' onClick={async()=>{
                                         await axios.delete(`http://localhost:3001/user/delete/write/${post_mypage_email}/${index}`,{

@@ -238,6 +238,20 @@ th,td{
 .write-list-body-list-data-data-name{
     cursor: pointer;
 }
+.write-list-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+}
+.write-list-search{
+    text-align: center;
+}
+.write-list-search-input{
+    width: 50%;
+    height: 37px;
+    font-size: 22px;
+}
 .write-detail-header{
     height: 120px;
     border-bottom: 1px solid #c6c6c6;  
@@ -383,7 +397,7 @@ th,td{
     align-items: flex-end;
     align-items: center;
     cursor: pointer;
-
+    position: relative;
 }
 .write-detail-body-comment-reply-comment-list-box-div{
     border-bottom: 1px solid #dadada;

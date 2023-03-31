@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+
 const likeWrite = (userid:number,postid:number) =>  axios.get(`http://localhost:3001/write/findUserLike/${postid}/${userid}`)
 const write = (postid : number) => axios.get(`http://localhost:3001/write/getWrite/${postid}`)
 const commentReply = (postid : number) => axios.get(`http://localhost:3001/write/getAll/CommentReply/${postid}`)
@@ -27,6 +28,7 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
         commentReply(Number(id.id)).then(res=>setCommentdata(res.data))
     },[])
 
+    console.log(commentdata[0])
 
     return(
         <div>
@@ -81,6 +83,7 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                         }}>{like}</span>
                     </div>  
                 </div>
+                
                 <div className='write-detail-body-comment-box'>
 
                     <div className='write-detail-body-comment-quantity'>
@@ -94,7 +97,7 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                     <div className='write-detail-body-comment-button'>
                         <button className='write-detail-body-comment-button-register' onClick={()=>{
                              axios.post(`http://localhost:3001/comment/${Number(id.id)}/${post_detail_userId}/comment`,{
-                                "comment_contents" : comment
+                                "commentContents" : comment
                              })
                                 .then(function(response){
                                     console.log(response.data)
@@ -119,17 +122,37 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                                     <div className='write-detail-body-comment-user-comment-list-contents-box'>
                                         <span className='write-detail-body-comment-user-comment-list-contents'>{i?.comment_contents}</span>
                                     </div>
-                                    <div className='write-detail-body-comment-user-comment-list-reply' id={i.comment_id} ref={(element)=>{getCommentId.current[index] = element}} onClick={()=>{                
+                                    <div className='write-detail-body-comment-user-comment-list-reply' >
+                                        <span id={i.comment_id} ref={(element)=>{getCommentId.current[index] = element}} onClick={()=>{                
                                         if(test.current[index].style.display == "none"){
                                             test.current[index].style.display = ""
                                         }else{
                                             test.current[index].style.display = "none"
                                         }
-                                    }}>
-                                        답글 작성
+                                    }}>답글 작성</span>
+                                        <span style={{
+                                            position : "absolute",
+                                            right:0
+                                        }}>
+                                            <span style={{
+                                                marginRight : 25
+                                            }}><img style={{
+                                                height : 30,
+                                                cursor : 'pointer'
+                                            }} src='../../../../good.png'></img><span style={{
+                                                position: "relative",
+                                                bottom : 6,
+                                                left : 6,
+                                                fontSize : 25
+                                            }}>1</span></span>
+                                            <span><img style={{
+                                                height : 30,
+                                                cursor : 'pointer'
+                                            }} src='../../../../no.png'></img></span>
+                                        </span>
                                     </div>
+                                    
                                 </div>          
-                            
                             </div>
                            
                             <div className='write-detail-body-comment-reply-comment-list-box-div' id={String(index)}  style={{display:'none'}} ref={(element)=>{test.current[index] = element}}>       
@@ -144,7 +167,31 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                                              <span className='write-detail-body-comment-reply-comment-list-profile-name'>{i.user.name}</span>
                                          </div>
                                          <div className='write-detail-body-comment-reply-comment-list-contents-box'>
-                                             <span className='write-detail-body-comment-reply-comment-list-contents'>{i.reply_contents}</span>
+                                             <span className='write-detail-body-comment-reply-comment-list-contents'>{i.replyContents}</span>
+                                         </div>
+                                         <div style={{
+                                            position : 'relative',
+                                            marginTop : 10,
+                                         }}>
+                                            <span style={{
+                                                position : 'absolute',
+                                                right : 50
+                                            }}>
+                                                <span style={{
+                                                    marginRight :25
+                                                }}><img style={{
+                                                    height : 30,
+                                                    cursor : 'pointer'
+                                                }} src="../../../../good.png"></img><span style={{
+                                                    position: "relative",
+                                                    bottom : 6,
+                                                    left : 6
+                                                }}>1</span></span>
+                                                <span><img style={{
+                                                    height : 30,
+                                                    cursor : 'pointer'
+                                                }} src="../../../../no.png"></img></span>
+                                            </span>
                                          </div>
                                      </li>
                                     ))}
@@ -161,7 +208,7 @@ function Detail ({post_status_to_detail,post_detail_userId}:any){
                                             console.log(Number(getCommentId.current[index].id)) 
 
                                             axios.post(`http://localhost:3001/reply/${Number(getCommentId.current[index].id)}/${post_detail_userId}/reply`,{
-                                                "reply_contents" : reply
+                                                "replyContents" : reply
                                             })
                                             .then(function(response){
                                                 console.log(response.data)

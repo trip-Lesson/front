@@ -1,40 +1,47 @@
 import React,{useEffect, useState} from 'react';
 import { useNavigate, useParams, } from 'react-router-dom';
 import axios from 'axios';
+import Page from './write.component/write.page';
+
 
 
 function Write_list(){
 
     const navigate = useNavigate()
-    const [writedata,setWritedata] = useState<any[]>([])
-    const [likedata,setLikedata] = useState<any[]>([])
-
-    useEffect(()=>{
-        axios.get(`http://localhost:3001/write`,
-        )
-        .then(function(response){
-            setWritedata(response.data)
-            console.log("asd")  
-            
-        }).catch(function(error){
-            console.log(error)
-        })
-    },[])
+    const [likedata,setLikedata] = useState<any>()
+    const [page,setPage] = useState<number>(1)
+    const [search,setSearch] = useState<string>("")
+    const [buttonClick,setButtonClick] = useState<any>(false)
+    const [searchWord,setSearchWord] = useState<string>("")
     
     useEffect(()=>{
-        axios.get(`http://localhost:3001/write/getAll/like`,
-        )
-        .then(function(response){
-            setLikedata(response.data)
-            console.log("asd")  
-            
-        }).catch(function(error){
-            console.log(error)
-        })
-    },[])
+        if(!buttonClick){
+            axios.get(`http://localhost:3001/write/getAll/like?page=${page}`,
+            )
+            .then(function(response){
+                setLikedata(response.data)  
+                
+            }).catch(function(error){
+                console.log(error)
+            })
+        }
+        
+        if(buttonClick){
+            axios.get(`http://localhost:3001/write?searchdata=${search}&page=${page}`,
+            )
+            .then(function(response){
+                if(response.data.data.length == 0){
+                    alert("검색결과가 없습니다.")
+                }else{
+                    setLikedata(response.data)
+                }           
+            }).catch(function(error){
+                console.log(error)
+            })
+        }
+    },[buttonClick,page,searchWord])
     
-    console.log(writedata)
-    console.log(likedata)
+    
     return(
         <div>
             <div className='write-list-header'>         
@@ -64,15 +71,15 @@ function Write_list(){
                         </thead>  
                         
                         <tbody>
-                        {likedata.map((i:any, index:any)=>(
+                        {likedata?.data.map((i:any, index:any)=>(
                             <tr>
-                                <td>{index+1}</td>
+                                <td>{i.postId}</td>
                                 <td onClick={()=>{
-                                    navigate(`/detail/${i.postid}`)
-                                }}>{i.postname}</td>
+                                    navigate(`/detail/${i.postId}`)
+                                }}>{i.postName}</td>
                                 <td>{i.user.name}</td>
                                 <td>{i.updatedAt}</td>
-                                <td>{i.like_write.length}</td>
+                                <td>{i.likeWrite.length}</td>
                             </tr>
                         ))}            
                         </tbody>
@@ -81,6 +88,40 @@ function Write_list(){
                                  
                 </div>
             </div>
+            <div className='write-list-footer'>
+                <Page totalPage={likedata?.meta?.last_page} get_pageData={setPage}></Page>
+            </div>
+            <div className='write-list-search'>
+                <input className='write-list-search-input' placeholder='제목 및 작성자의 이름을 검색해주세요' value={search} onChange={(e:any)=>{
+                    setSearch(e.target.value)
+                }}></input>
+                <img src='search.png' style={{
+                    height:30,
+                    position :'relative',
+                    right:42,
+                    top:5.7,
+                    cursor:'pointer'
+                }} onClick={()=>{         
+                    if(search == ""){
+                        setButtonClick(false)
+                        alert("검색결과가 없습니다.")
+                    }
+                    else if(search !== ""){
+                        if(!buttonClick){
+                            setButtonClick(true)
+                        }
+                        else if(buttonClick){
+                            setPage(1)
+                            setSearchWord(search)
+                            if(search == ""){
+                                setButtonClick(false)
+                                alert("검색결과가 없습니다.")
+                            }                 
+                        }
+                    }        
+                }}></img>
+            </div>
+            
         </div>
     )
 }

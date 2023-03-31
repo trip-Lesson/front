@@ -21,7 +21,6 @@ const Router = () => {
     const [status,setStatus] = useState() 
     const [name,setName] = useState()
     const [mail,setMail] = useState()
-    const [home_news_data,setHome_news_data] = useState()
     const [updateWithPostId,setUpdateWithPostId] = useState("")
     const [user_id,setUser_id] = useState()
   
@@ -30,7 +29,7 @@ const Router = () => {
     return (
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home get_news_data={setHome_news_data} post_news_data={home_news_data} poststatus={status} modifystatus={setStatus}/>}/>
+                    <Route path="/" element={<Home poststatus={status} modifystatus={setStatus}/>}/>
                     <Route path="/login" element={<Login get_User_id={setUser_id} getstatus={setStatus} get_email = {setMail} get_name={setName}/>}/>
                     <Route path="find_pwd" element={<Find_PWD/>}/>
                     <Route path="find_id" element={<Find_ID/>}/>

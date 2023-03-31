@@ -18,11 +18,11 @@ function Write_write({post_name,post_email,post_write_userId}:any){
         await axios.post(`http://localhost:3001/write/${post_write_userId}/write`,{
             "name" : post_name,
             "email" : post_email,
-            "postname" : postname,
-            "postcategory" : postcategory,
-            "postcountry" : postcountry,
-            "postaddress" : postaddress,
-            "postcontents" : postcontents
+            "postName" : postname,
+            "postCategory" : postcategory,
+            "postCountry" : postcountry,
+            "postAddress" : postaddress,
+            "postContents" : postcontents
         }).then(function(response){
             console.log(response)
             alert("저장되었습니다.")     
